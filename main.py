@@ -5,9 +5,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome import service as fs
 import time
 from bs4 import BeautifulSoup
-import bs4
 import re
-import sys
+from data import exclusion_element
+from data import expect_element
 
 def main():
   # Webドライバーの設定
@@ -15,7 +15,6 @@ def main():
   # options.add_argument('--headless')
   chrome_service = fs.Service(executable_path=ChromeDriverManager().install())
   driver = webdriver.Chrome(service=chrome_service, options=options)
-
   # 対象画面にアクセスし、初期操作を行う
   url = "https://www.hellowork.mhlw.go.jp/"
   driver.get(url)
@@ -30,18 +29,20 @@ def main():
   # 求人テーブルのデータを取得
   soup = BeautifulSoup(driver.page_source, "html.parser")
   jobs = soup.find_all("table", attrs={"class": "kyujin"})
-  error = list()
+  errors = list()
+  # 除外するelementのid
+  exclusion_element_id = exclusion_element.exclusion_element()
+  expect_element_id = expect_element.expect_element()
+  # 各求人のデータを取得
   for i, job in enumerate(jobs):
     # 検索結果一覧からタグを取得する
     tags = [tag.text.strip() for tag in  job.find_all('span', attrs={'class': 'nes_label any'})]
-
     # 検索結果の上から順番に求人詳細のデータを取得
     detail_path = job.select('#ID_dispDetailBtn')[0].get("href")
     detail_link = "https://www.hellowork.mhlw.go.jp/kensaku" + detail_path[1:]
     driver.get(detail_link)
     time.sleep(0.5)
     soup = BeautifulSoup(driver.page_source, "html.parser")
-
     # 求人詳細の求人情報テーブルから全てのidとテキストを取得する
     job_details = soup.find_all("table", attrs={"class": "normal mb1"})
     offers = dict()
@@ -58,11 +59,10 @@ def main():
             'error': 'unknown duplicated element id',
             'detail': element_id
             }
-          err.append(e)
+          errors.append(e)
           print(e)
         offers[element_id] = element.text.strip()
     all_element_id = set(offers.keys())
-
     # 未知のカラムがないかチェック
     unknown_elemet_id = all_element_id.difference(exclusion_element_id)
     unknown_elemet_id = unknown_elemet_id.difference(expect_element_id)
@@ -72,12 +72,10 @@ def main():
         'error': 'found unknown columns',
         'detail': unknown_elemet_id
         }
-      err.append(e)
+      errors.append(e)
       print(e)
-
     # 求人詳細から各データを取得する
     get_offers(offers)
-
     # 検索結果の次のページへ移動
     if driver.find_element(by=By.NAME, value='fwListNaviBtnNext').is_enabled():
       driver.find_element(by=By.NAME, value='fwListNaviBtnNext').click()
