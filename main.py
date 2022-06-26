@@ -47,7 +47,8 @@ def main():
     # 各求人のデータを取得
     for i, job in enumerate(jobs):
       # 検索結果一覧からタグを取得する
-      tags = [tag.text.strip() for tag in  job.find_all('span', attrs={'class': 'nes_label any'})]
+      ## 、で区切ったテキストデータにする
+      tags = '、'.join([tag.text.strip() for tag in  job.find_all('span', attrs={'class': 'nes_label any'})])
       # 検索結果の上から順番に求人詳細のデータを取得
       detail_path = job.select('#ID_dispDetailBtn')[0].get("href")
       detail_link = "https://www.hellowork.mhlw.go.jp/kensaku" + detail_path[1:]
@@ -99,13 +100,9 @@ def main():
     # テスト用のカウンターを更新。特定の回数でループを止める
     h = h +1
     print(h)
-    if h >= 5:
+    if h > 5:
       break
   print(errors)
-  # # 不要な行の削除
-  # offer = pd.read_csv('./output/offers.csv')
-  # offer = offer.query('offer_id != "offer_id"')
-  # offer.to_csv('./output/offers.csv')
   # ドライバーを閉じる
   driver.close()
   driver.quit()
