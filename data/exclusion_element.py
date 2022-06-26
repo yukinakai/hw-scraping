@@ -19,6 +19,7 @@ def exclusion_element():
     'ID_pinLongitudemap1',
     'ID_pinLongitudemap2',
     'ID_prLogo1',
+    'ID_prLogo2',
     'ID_rightmap1',
     'ID_rightmap2',
     'ID_scalemap1',

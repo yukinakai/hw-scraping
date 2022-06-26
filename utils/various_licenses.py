@@ -5,8 +5,8 @@ def get_various_licenses(soup):
     if len(license_names) > 0:
         for i, license_name in enumerate(license_names):
             license = dict()
-            license['name'] = license_name
-            license['required'] = license_required[i]
+            license['name'] = license_name.text.strip()
+            license['required'] = license_required[i].text.strip()
             various_licenses.append(license)
     else:
         various_licenses.append({
