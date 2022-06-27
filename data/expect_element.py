@@ -208,7 +208,7 @@ def element_id_cols():
     # 障害者に対する配慮に関する状況
     'ID_kigyoZiskKataJobUmu': 'job_coach',
     'ID_elevator': 'elevator',
-    'ID_tenjiSetsubi': 'ｂraille',
+    'ID_tenjiSetsubi': 'braille',
     'ID_tatemonoKrmIsuIdo': 'wheelchair_transfer',
     'ID_kaidanTesuri': 'handrail_on_stairs',
     'ID_tesuriSechi': 'handrail_on_stairs_where',
