@@ -16,7 +16,7 @@ def element_id_cols():
     'ID_szci': 'office_address',
     'ID_hp': 'office_hp',
     # 仕事内容
-    'ID_sksu': 'job_type',
+    'ID_sksu': 'title',
     'ID_shigotoNy': 'description',
     'ID_koyoKeitai': 'employment_type',
     'ID_koyoKeitaiSsinIgaiNoMeisho': 'employment_type_name',
