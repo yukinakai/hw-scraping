@@ -16,6 +16,12 @@ def offer_to_csv(_offer, tags, is_1st_page):
         offer['min_salary_type_salary'], offer['max_salary_type_salary'] = salary.min_max_salary(_offer[element_id])
     else:
       offer[col_name] = ''
+      if col_name == 'total_salary':
+          offer['min_total_salary'] = ''
+          offer['max_total_salary'] = ''
+      elif col_name == 'salary_type_salary':
+        offer['min_salary_type_salary'] = ''
+        offer['max_salary_type_salary'] = ''
   offer['tags'] = tags
 
   if is_1st_page:

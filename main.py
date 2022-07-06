@@ -6,7 +6,6 @@ from selenium.webdriver.chrome import service as fs
 import time
 from bs4 import BeautifulSoup
 import re
-import pandas as pd
 from data import exclusion_element
 from data import expect_element
 from utils import various_licenses
@@ -100,7 +99,7 @@ def main():
     # テスト用のカウンターを更新。特定の回数でループを止める
     h = h +1
     print(h)
-    if h > 5:
+    if h > 1:
       break
   print(errors)
   # ドライバーを閉じる
