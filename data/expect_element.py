@@ -1,6 +1,6 @@
 def element_id_cols():
   return {
-    'ID_kjNo': 'offer_id',
+    'ID_kjNo': 'hw_offer_id',
     'ID_uktkYmd': 'start_date',
     'ID_shkiKigenHi': 'end_date',
     'ID_juriAtsh': 'accepted_branch',
@@ -9,7 +9,7 @@ def element_id_cols():
     'ID_sngBrui': 'industry',
     'ID_tryKoyoKibo': 'hope_trial_employment_combined',
     # 求人事業所
-    'ID_jgshNo': 'company_id',
+    'ID_jgshNo': 'hw_company_id',
     'ID_jgshMei': 'company_name',
     'ID_jgshMeiKana': 'company_name_kana',
     'ID_szciYbn': 'company_zipcode',
