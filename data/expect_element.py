@@ -179,7 +179,7 @@ def element_id_cols():
     # 求人に関する特記事項
     'ID_kjTkjk': 'remarks',
     # 求人・事業所PR情報
-    'ID_jgshKaraNoMsg': 'office_promotion',
+    'ID_jgshKaraNoMsg': 'office_pr',
     'ID_shokumuKyuSd': 'job_salary_system',
     'ID_shokumuKyuSdNoNy': 'job_salary_system_detail',
     'ID_fukushokuSd': 'reinstatement_system',
