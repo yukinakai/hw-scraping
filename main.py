@@ -87,7 +87,7 @@ def main():
         errors.append(e)
         print(e)
       # 求人詳細のデータを整形し、CSVに落とす
-      offer_to_csv.offer_to_csv(_offer, tags, is_1st_page)
+      offer_to_csv.offer_to_csv(_offer, tags, detail_link, is_1st_page)
     # 検索結果一覧用のタブに移動
     driver.switch_to.window(driver.window_handles[0])
     # 検索結果の次のページへ移動

@@ -2,7 +2,7 @@ from data import expect_element
 from utils import salary
 import csv
 
-def offer_to_csv(_offer, tags, is_1st_page):
+def offer_to_csv(_offer, tags, detail_link, is_1st_page):
   offer = dict()
   element_id_cols = expect_element.element_id_cols()
   for element_id, col_name in element_id_cols.items():
@@ -23,6 +23,7 @@ def offer_to_csv(_offer, tags, is_1st_page):
         offer['min_salary_type_salary'] = ''
         offer['max_salary_type_salary'] = ''
   offer['tags'] = tags
+  offer['url'] = detail_link
 
   if is_1st_page:
     with open('./output/offers.csv', 'w') as f:
